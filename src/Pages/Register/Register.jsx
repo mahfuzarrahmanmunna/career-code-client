@@ -15,7 +15,7 @@ const Register = () => {
         <div className="hero bg-base-200 py-12">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div>
-                    <Lottie animationData={register} loot={true} />
+                    <Lottie animationData={register} loop={true} />
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
