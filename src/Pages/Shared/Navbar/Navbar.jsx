@@ -1,6 +1,8 @@
 import { NavLink } from "react-router";
 
 const Navbar = () => {
+    // const userInfo = use(AuthContext)
+    // console.log(userInfo);
 
     const links = <>
         <li>

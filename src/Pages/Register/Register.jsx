@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 import register from '../../assets/register.json'
 import Lottie from 'lottie-react';
+import { AuthContext } from '../../Authentication/Context/AuthContext';
 
 const Register = () => {
+    const { createUser } = use(AuthContext)
+    const [error, setError] = useState('')
+    console.log(createUser);
 
     const handleRegister = e => {
         e.preventDefault();
@@ -10,6 +14,19 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+
+        // create user here
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(err => {
+                const code = err.code;
+                console.log(code);
+                setError(code)
+            })
     }
     return (
         <div className="hero bg-base-200 py-12">
@@ -26,6 +43,11 @@ const Register = () => {
                             <label className="label">Password</label>
                             <input type="password" name='password' className="input" placeholder="Password" />
                             <div><a className="link link-hover">Forgot password?</a></div>
+                            <div>
+                                <div className="text-red-500">
+                                    {error}
+                                </div>
+                            </div>
                             <button className="btn btn-neutral mt-4">Login</button>
                         </form>
                     </div>
