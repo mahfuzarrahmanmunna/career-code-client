@@ -43,6 +43,9 @@ const Navbar = () => {
                 <NavLink to='/register' className='btn btn-outline btn-accent'>
                     Register
                 </NavLink>
+                <NavLink to='/login' className='btn btn-outline btn-accent ms-2'>
+                    Login
+                </NavLink>
             </div>
         </div>
     );
