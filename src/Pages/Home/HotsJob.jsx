@@ -12,7 +12,7 @@ const HotsJob = ({ jobsPromise }) => {
             <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {
                     jobs.map(job => (
-                        <Suspense fallback={
+                        <Suspense key={job?._id} fallback={
                             <div className="w-full h-64 flex items-center justify-center">
                                 <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-blue-500"></div>
                             </div>
