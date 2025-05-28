@@ -19,13 +19,15 @@ const JobApply = () => {
         const applicationData = {
             jobId,
             userId: user?.uid,
+            applicant: user?.email,
+            applicantName: user?.displayName,
             linkedIn,
             gitHub,
             resume
         };
 
         console.log(applicationData);
-        
+
         // Here you can send the applicationData to your server or API
         axios.post('http://localhost:3000/applications', applicationData)
             .then(res => {

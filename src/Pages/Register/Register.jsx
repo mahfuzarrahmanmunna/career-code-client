@@ -2,9 +2,10 @@ import React, { use, useState } from 'react';
 import register from '../../assets/register.json'
 import Lottie from 'lottie-react';
 import { AuthContext } from '../../Authentication/Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Register = () => {
-    const { createUser,  } = use(AuthContext)
+    const { createUser, } = use(AuthContext)
     const [error, setError] = useState('')
     console.log(createUser);
 
@@ -22,6 +23,13 @@ const Register = () => {
                 const user = result.user;
                 // updatedUser({ displayName: name, photoUrl: photo })
                 console.log(user);
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Registered Successfully..! Please Login",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
             .catch(err => {
                 const code = err.code;

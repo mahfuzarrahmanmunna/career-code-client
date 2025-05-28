@@ -3,6 +3,7 @@ import { AuthContext } from '../../Authentication/Context/AuthContext';
 import login from '../../assets/login.json'
 import Lottie from 'lottie-react';
 import { useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
@@ -41,6 +42,13 @@ const Login = () => {
                 const user = result.user;
                 navigate(location.state || '/')
                 setError('')
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successfully..!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 console.log(user);
             })
             .catch(err => {

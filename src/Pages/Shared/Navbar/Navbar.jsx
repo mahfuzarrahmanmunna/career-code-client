@@ -21,6 +21,15 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
+        {
+            user && (
+                <li>
+                    <NavLink to='/my-applications' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
+                        My Applications
+                    </NavLink>
+                </li>
+            )
+        }
         {/* <li>
             <NavLink to='/jobs' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
                 Jobs
