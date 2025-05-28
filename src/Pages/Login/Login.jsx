@@ -1,7 +1,8 @@
 import React, { use, useState } from 'react';
+import { AuthContext } from '../../Authentication/Context/AuthContext';
 import login from '../../assets/login.json'
 import Lottie from 'lottie-react';
-import { AuthContext } from '../../Authentication/Context/AuthContext';
+
 
 const Login = () => {
     const [error, setError] = useState('');

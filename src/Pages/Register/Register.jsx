@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 import { AuthContext } from '../../Authentication/Context/AuthContext';
 
 const Register = () => {
-    const { createUser } = use(AuthContext)
+    const { createUser,  } = use(AuthContext)
     const [error, setError] = useState('')
     console.log(createUser);
 
@@ -20,6 +20,7 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
+                // updatedUser({ displayName: name, photoUrl: photo })
                 console.log(user);
             })
             .catch(err => {
