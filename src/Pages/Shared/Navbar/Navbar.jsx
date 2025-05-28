@@ -21,11 +21,11 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
-        <li>
+        {/* <li>
             <NavLink to='/jobs' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
                 Jobs
             </NavLink>
-        </li>
+        </li> */}
     </>;
 
     return (

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const JobApply = () => {
     const { id: jobId } = useParams();
@@ -23,7 +25,24 @@ const JobApply = () => {
         };
 
         console.log(applicationData);
+        
         // Here you can send the applicationData to your server or API
+        axios.post('http://localhost:3000/applications', applicationData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Application  has been saved..!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
     return (
         <div>

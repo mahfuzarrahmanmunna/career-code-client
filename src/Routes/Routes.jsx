@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
                 path: '/job-apply/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/jobs/${params.id}`),
                 element: <PrivateRoutes><JobApply /></PrivateRoutes>
+            },
+            {
+                path: '/my-applications',
+                
             }
         ]
     }
