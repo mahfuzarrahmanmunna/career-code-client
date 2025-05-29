@@ -8,7 +8,9 @@ import JobApply from "../Pages/JobApply/JobApply";
 import PrivateRoutes from "../Private/PrivateRoutes/PrivateRoutes";
 import MyApplications from "../Pages/MyApplications/MyApplications";
 import AddJobs from "../Pages/AddJobs/AddJobs";
-import MyPostedJobs from "../Pages/MyPostedJob/MyPostedJobs";
+import MyPostedJob from "../Pages/MyPostedJob/MyPostedJob";
+import ViewApplications from "../Pages/ViewApplications/ViewApplications";
+// import MyPostedJobs from "../Pages/MyPostedJob/MyPostedJobs";
 
 export const router = createBrowserRouter([
     {
@@ -20,39 +22,45 @@ export const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path: '/register',
+                path: 'register',
                 Component: Register
             },
             {
-                path: '/login',
+                path: 'login',
                 Component: Login
             },
             {
-                path: '/jobs/:id',
+                path: 'jobs/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/jobs/${params.id}`),
                 Component: JobDetails
             },
             {
-                path: '/job-apply/:id',
+                path: 'job-apply/:id',
                 loader: ({ params }) => fetch(`http://localhost:3000/jobs/${params.id}`),
                 element: <PrivateRoutes><JobApply /></PrivateRoutes>
             },
             {
-                path: '/add-job',
+                path: 'add-job',
                 element: <PrivateRoutes>
                     <AddJobs />
                 </PrivateRoutes>
             },
             {
-                path: '/my-posted-jobs',
+                path: 'my-posted-jobs',
                 element: <PrivateRoutes>
-                    <MyPostedJobs />
+                    <MyPostedJob />
                 </PrivateRoutes>
             },
             {
-                path: '/my-applications',
+                path: 'my-applications',
                 element: <PrivateRoutes>
                     <MyApplications />
+                </PrivateRoutes>
+            },
+            {
+                path: 'applications/:id',
+                element: <PrivateRoutes>
+                    <ViewApplications />
                 </PrivateRoutes>
             }
         ]

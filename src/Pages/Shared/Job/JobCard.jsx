@@ -3,13 +3,13 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const JobCard = ({ job }) => {
-    const { title, location, requirements, salaryRange, _id, jobTYpe, category, description, company, company_logo } = job || {}
+    const { title, location, requirements, salaryRange, _id, description, company, company_logo } = job || {}
     return (
         <div className="card bg-base-100 lg:w-96 shadow-sm">
             <div className='flex items-center gap-4 p-4'>
                 <figure>
                     <img
-                        src={company_logo || 'https://via.placeholder.com/150'}
+                        src={company_logo}
                         alt={company}
                         className='h-12 w-12 rounded-2xl '
                     />

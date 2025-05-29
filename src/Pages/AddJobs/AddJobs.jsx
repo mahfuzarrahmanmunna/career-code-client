@@ -87,7 +87,7 @@ const AddJobs = () => {
                         {/* HR email */}
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                             <label className="label">HR Email</label>
-                            <input value={user?.email} type="email" name='hr_email' className="input w-full" placeholder="HR Email" />
+                            <input defaultValue={user?.email} type="email" name='hr_email' className="input w-full" placeholder="HR Email" />
                         </fieldset>
 
                         {/* Job Type */}

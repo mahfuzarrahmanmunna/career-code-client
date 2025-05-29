@@ -1,11 +1,30 @@
 import React, { use } from 'react';
+import MyPostedRow from './MyPostedRow';
 
-const MyPostedJobList = ({ jobsCreatedByPromise }) => {
-    const data = use(jobsCreatedByPromise)
+const MyPostedJobList = ({ JobPromisedByMyPostedJob }) => {
+    const data = use(JobPromisedByMyPostedJob)
     console.log(data);
     return (
-        <div>
-            <h1>My posted job list</h1>
+        <div className='lg:max-w-5xl mx-auto px-6'>
+            <h1>My Job list : {data.length}</h1>
+            <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Title</th>
+                            <th>Job</th>
+                            <th>View Applications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            data && data.map((item, index) => <MyPostedRow key={index} item={item} index={index} />)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
