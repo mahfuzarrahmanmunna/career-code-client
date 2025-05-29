@@ -1,9 +1,51 @@
 import React from 'react';
+import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddJobs = () => {
+    const { user } = useAuth()
 
     const handleAAddJob = e => {
         e.preventDefault()
+        const form = e.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log('data', data);
+
+        // Process the salary range data
+        const { min, max, currency, ...newJob } = data;
+        newJob.salaryRange = { min, max, currency }
+
+        // process the requirements 
+        const requirementsString = newJob.requirements;
+        const requirementsDirty = requirementsString.split(',')
+        const requirementsCleaned = requirementsDirty.map(req => req.trim())
+        newJob.requirements = requirementsCleaned;
+        console.log('requirements', newJob.requirements);
+        // newJob.requirements = newJob.requirements.split(',').map(req => req.trim());   // one line solutions
+
+        // process the responsibilities
+        newJob.responsibilities = newJob.responsibilities.split(',').map(res => res.trim())
+        newJob.status = 'active'; // default status
+        console.log(newJob);
+
+        // Save the job to the database
+        axios.post('http://localhost:3000/jobs', newJob)
+            .then(res => {
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your Job has been added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err.code);
+            })
     }
     return (
         <div className="px-4">
@@ -27,22 +69,34 @@ const AddJobs = () => {
                         {/* Company Location */}
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                             <label className="label">Location</label>
-                            <input type="text" className="input w-full" placeholder="Company Location" />
+                            <input type="text" name='location' className="input w-full" placeholder="Company Location" />
                         </fieldset>
 
                         {/* Company Logo URL */}
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                             <label className="label">Company Logo</label>
-                            <input type="url" className="input w-full" placeholder="Company Logo URL" />
+                            <input type="url" name='company_logo' className="input w-full" placeholder="Company Logo URL" />
+                        </fieldset>
+
+                        {/* HR name */}
+                        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                            <label className="label">HR Name</label>
+                            <input type="text" name='hr_name' className="input w-full" placeholder="HR Name" />
+                        </fieldset>
+
+                        {/* HR email */}
+                        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+                            <label className="label">HR Email</label>
+                            <input value={user?.email} disabled type="email" name='hr_email' className="input w-full" placeholder="HR Email" />
                         </fieldset>
 
                         {/* Job Type */}
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                             <label className="label">Job Type</label>
-                            <div className="flex flex-wrap gap-2">
-                                <input className="btn" type="radio" name="jobType" aria-label="On-Site" />
-                                <input className="btn" type="radio" name="jobType" aria-label="Remote" />
-                                <input className="btn" type="radio" name="jobType" aria-label="Hybrid" />
+                            <div className="filter">
+                                <input className="btn" type="radio" name="jobType" value='On-Site' aria-label="On_Site" />
+                                <input className="btn" type="radio" name="jobType" value='Remote' aria-label="Remote" />
+                                <input className="btn" type="radio" name="jobType" value='Hybrid' aria-label="Hybrid" />
                             </div>
                         </fieldset>
 
@@ -60,7 +114,7 @@ const AddJobs = () => {
                         {/* Application Deadline */}
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
                             <label className='label'>Application Deadline</label>
-                            <input type="date" className="input w-full" />
+                            <input type="date" name='deadline' className="input w-full" />
                         </fieldset>
 
                         {/* Salary Range */}
@@ -106,9 +160,7 @@ const AddJobs = () => {
                             <textarea className="textarea w-full" name='description' placeholder="Job Description"></textarea>
                         </fieldset>
                     </div>
-                    <fieldset className="btn btn-primary btn-outline btn-block p-4 mt-4">
-                        <input type="submit" value="Add A Job" />
-                    </fieldset>
+                    <input type="submit" value="Add A Job" className="btn btn-primary btn-outline btn-block p-4 mt-4" />
                 </form>
             </div>
         </div>
