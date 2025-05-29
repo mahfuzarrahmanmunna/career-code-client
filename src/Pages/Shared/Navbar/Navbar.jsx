@@ -23,11 +23,18 @@ const Navbar = () => {
         </li>
         {
             user && (
-                <li>
-                    <NavLink to='/my-applications' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
-                        My Applications
-                    </NavLink>
-                </li>
+                <>
+                    <li>
+                        <NavLink to='/my-applications' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
+                            My Applications
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/add-job' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
+                            Add Job
+                        </NavLink>
+                    </li>
+                </>
             )
         }
         {/* <li>
