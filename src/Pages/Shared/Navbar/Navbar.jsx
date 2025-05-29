@@ -21,6 +21,8 @@ const Navbar = () => {
                 Home
             </NavLink>
         </li>
+
+        {/* Applicant see */}
         {
             user && (
                 <>
@@ -29,14 +31,23 @@ const Navbar = () => {
                             My Applications
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to='/add-job' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
-                            Add Job
-                        </NavLink>
-                    </li>
                 </>
             )
         }
+
+        {/* Recruiter seen */}
+        {user && <>
+            <li>
+                <NavLink to='/add-job' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
+                    Add Job
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to='/my-posted-jobs' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
+                    My Posted Jobs
+                </NavLink>
+            </li>
+        </>}
         {/* <li>
             <NavLink to='/jobs' className={({ isActive }) => `font-bold ${isActive ? 'text-primary' : ''}`}>
                 Jobs
