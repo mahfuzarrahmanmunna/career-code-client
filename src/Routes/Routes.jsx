@@ -61,7 +61,8 @@ export const router = createBrowserRouter([
                 path: 'applications/:id',
                 element: <PrivateRoutes>
                     <ViewApplications />
-                </PrivateRoutes>
+                </PrivateRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:3000/application/job/${params.id}`)
             }
         ]
     }
