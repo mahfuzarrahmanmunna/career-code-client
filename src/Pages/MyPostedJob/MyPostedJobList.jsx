@@ -14,7 +14,8 @@ const MyPostedJobList = ({ JobPromisedByMyPostedJob }) => {
                         <tr>
                             <th>Serial</th>
                             <th>Title</th>
-                            <th>Job</th>
+                            <th>Deadline</th>
+                            <th>Count</th>
                             <th>View Applications</th>
                         </tr>
                     </thead>

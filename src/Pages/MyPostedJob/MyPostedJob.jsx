@@ -6,7 +6,7 @@ import { JobPromisedByMyPostedJob } from '../../API/Job/JobAPI';
 const MyPostedJob = () => {
     const { user } = useAuth()
     return (
-        <div>
+        <div className='my-12'>
             <h1>My posted Job </h1>
             <Suspense fallback={'Loading...'}>
                 <MyPostedJobList JobPromisedByMyPostedJob={JobPromisedByMyPostedJob(user?.email)} />

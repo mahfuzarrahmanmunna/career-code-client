@@ -9,6 +9,7 @@ const MyPostedRow = ({ index, item }) => {
             <th>{index + 1}</th>
             <td>{item?.title}</td>
             <td>{item?.deadline}</td>
+            <td>0</td>
             <td className='text-center'>
                 <Link to={`/applications/${item?._id}`} className='text-center'>
                     <BsEye size={20} />
